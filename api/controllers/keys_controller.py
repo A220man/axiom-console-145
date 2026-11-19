@@ -51,7 +51,7 @@ async def create_key(key_request: CreateKeyRequest):
         key_type=key_request.key_type,
         is_active=True,
         added_at=datetime.now(),
-        status="healthy",
+        status=key_request.status if hasattr(key_request, "status") else "healthy",
         priority=key_request.priority,
         quota_remaining=key_request.quota_limit,
         quota_limit=key_request.quota_limit
