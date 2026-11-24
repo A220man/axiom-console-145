@@ -7,6 +7,12 @@ from fastapi.testclient import TestClient
 from api import create_app
 
 
+@pytest.fixture(autouse=True)
+def reset_keys_db():
+    """Reset in-memory keys database between tests."""
+    import api.controllers.keys_controller as kc
+    kc.keys_db.clear()
+
 class TestAPI:
     """Test API endpoints and functionality."""
     

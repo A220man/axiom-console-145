@@ -152,7 +152,7 @@ class StatsResponse(BaseModel):
 
 class CreateKeyRequest(BaseModel):
     
-    status: str = Field(default=\"healthy\", description=\"Status (healthy, issues, disabled)\")
+    status: str = Field(default="healthy", description="Status (healthy, issues, disabled)")
     """Request model for creating API keys."""
     
     provider: str = Field(..., description="Provider to associate key with")
