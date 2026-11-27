@@ -1,4 +1,4 @@
-from typing import Optional, Dict, Any, List
+from typing import Literal, Optional, Dict, Any, List
 from pydantic import BaseModel, Field
 from datetime import datetime
 
@@ -152,7 +152,7 @@ class StatsResponse(BaseModel):
 
 class CreateKeyRequest(BaseModel):
     
-    status: str = Field(default="healthy", description="Status (healthy, issues, disabled)")
+    status: Literal["healthy", "issues", "disabled"] = Field(default="healthy", description="Status (healthy, issues, disabled)")
     """Request model for creating API keys."""
     
     provider: str = Field(..., description="Provider to associate key with")
@@ -181,7 +181,7 @@ class UpdateKeyRequest(BaseModel):
     is_active: Optional[bool] = Field(None, description="Whether key is active")
     priority: Optional[int] = Field(None, description="Priority level")
     quota_limit: Optional[int] = Field(None, description="New quota limit")
-    status: Optional[str] = Field(None, description="Status (healthy, issues, disabled)")
+    status: Optional[Literal["healthy", "issues", "disabled"]] = Field(None, description="Status (healthy, issues, disabled)")
     
     class Config:
         json_schema_extra = {
